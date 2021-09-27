@@ -1,6 +1,6 @@
 package ru.sber.generics
 
-fun <T> compare(p1: Pair<T, T>, p2: Pair<T, T>): Boolean {
+fun <T, E> compare(p1: Pair<T, E>, p2: Pair<T, E>): Boolean {
     if(p1.first!!.equals(p2.first) && p1.second!!.equals(p2.second)) {
         return true
     } else return false
@@ -9,8 +9,9 @@ fun <T> compare(p1: Pair<T, T>, p2: Pair<T, T>): Boolean {
 
 fun <T : Comparable<T>> countGreaterThan(anArray: Array<T>, elem: T): Int {
     var count: Int = 0
-    anArray.sort()
-    count = (anArray.size - 1) - anArray.indexOf(elem)
+    for(i in anArray) {
+        if(i > elem) count++
+    }
     return count
 }
 
